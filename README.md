@@ -23,7 +23,7 @@ Packages demonstrated:
 * PerfectLib (JSON)
 * HTTPServer
 * CURL
-* JSONConfig (3rd patry library for reading configurations)
+* [JSONConfig](https://github.com/iamjono/JSONConfig) (3rd party library for reading configurations)
 
 This package builds with Swift Package Manager and is part of the [Perfect](https://github.com/PerfectlySoft/Perfect) project.
 
