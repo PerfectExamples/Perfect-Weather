@@ -29,6 +29,12 @@ This package builds with Swift Package Manager and is part of the [Perfect](http
 
 Ensure you have installed Xcode 8.0 or later.
 
+## Obtaining an API Key
+
+This example project requires a valid API key from [https://www.wunderground.com/weather/api/](https://www.wunderground.com/weather/api/) to function. Use this link to sign up for a developer account, and obtain an API key.
+
+This key will be added to the `ApplicationConfiguration.json` file as described below.
+
 ## Setup - Xcode 8
 
 * Check out or download the project;
@@ -40,6 +46,12 @@ swift package generate-xcodeproj
 
 * Open `Perfect-Weather.xcodeproj`
 * Add to the "Library Search Paths" in "Project Settings" `$(PROJECT_DIR)`, recursive. **(This step will be unneeded in a future release of Xcode 8.)**
+* Rename the `ApplicationConfiguration.json.example` file to 	`ApplicationConfiguration.json`. 
+* Open this file and change the `token` value to the WeatherUnderground token obtained above.
+* Add the file to a new "Copy Files" build phase as shown:
+
+![https://github.com/PerfectExamples/Perfect-Weather/raw/master/Resource/CopyFilesPhase.png](https://github.com/PerfectExamples/Perfect-Weather/raw/master/Resource/CopyFilesPhase.png)
+
 * Select the Executable build target from the build targets dropdown in Xcode
 * Run (cmd-R) to build & run in Xcode.
 
@@ -55,6 +67,8 @@ In Xcode's console output pane you will see:
 
 * Check out or download the project;
 * In terminal, navigate to the directory 
+* * Rename the `ApplicationConfiguration.json.example` file to 	`ApplicationConfiguration.json`. 
+* Open this file and change the `token` value to the WeatherUnderground token obtained above.
 * Execute `swift build`
 * Once the project has compiled, execute `./.build/debug/Perfect-Weather`
 
