@@ -1,0 +1,67 @@
+{
+	"variables": [],
+	"info": {
+		"name": "Perfect Weather API",
+		"_postman_id": "6cc07e69-35c2-1e42-5d20-51aacda7dce8",
+		"description": "",
+		"schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "http://localhost:8181/api/v1/forecast/Canada/Halifax",
+			"request": {
+				"url": "http://localhost:8181/api/v1/forecast/Canada/Halifax",
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": []
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "http://localhost:8181/api/v1/current/Canada/Halifax",
+			"request": {
+				"url": "http://localhost:8181/api/v1/current/Canada/Halifax",
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": []
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "http://localhost:8181/api/v1/current",
+			"request": {
+				"url": "http://localhost:8181/api/v1/current",
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": []
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "http://localhost:8181/api/v1/forecast",
+			"request": {
+				"url": "http://localhost:8181/api/v1/forecast",
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": []
+				},
+				"description": ""
+			},
+			"response": []
+		}
+	]
+}
