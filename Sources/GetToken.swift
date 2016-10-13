@@ -11,8 +11,7 @@ import JSONConfig
 // Function to read the JSON config file (ApplicationConfiguration.json) and set the apiToken
 func getToken() -> String {
 	if let config = JSONConfig(name: "\(FileRoot)ApplicationConfiguration.json") {
-		let dict = config.getValues()!
-		guard let apiToken = dict["token"] else {
+		guard let dict = config.getValues(), let apiToken = dict["token"] else {
 			print("Unable to get API Token")
 			return ""
 		}
