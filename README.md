@@ -111,7 +111,7 @@ The following routes are included in this API for demonstration purposes:
 * GET: [http://localhost:8181/api/v1/current](http://localhost:8181/api/v1/current) - A route that returns the current weather conditions for the default location, Canada/Newmarket.
 * GET: [http://localhost:8181/api/v1/forecast](http://localhost:8181/api/v1/forecast) - A route that returns the weather forecast for the default location, Canada/Newmarket.
 * GET: [http://localhost:8181/api/v1/current/{country}/{city}](http://localhost:8181/api/v1/current/{country}/{city}) - A route that returns the current weather conditions for the specified country and city. Make sure you replace `{country}` and `{city}` with valid values.
-* GET: [http://localhost:8181/api/v1/current/{country}/{city}](http://localhost:8181/api/v1/current/{country}/{city}) - A route that returns the weather forecast for the specified country and city. Make sure you replace `{country}` and `{city}` with valid values.
+* GET: [http://localhost:8181/api/v1/forecast/{country}/{city}](http://localhost:8181/api/v1/current/{country}/{city}) - A route that returns the weather forecast for the specified country and city. Make sure you replace `{country}` and `{city}` with valid values.
 
 Current conditions sample response:
 
