@@ -1,4 +1,4 @@
-# Perfect天气App示例
+# Perfect天气App示例[English](README.md)
 
 <p align="center">
     <a href="http://perfect.org/get-involved.html" target="_blank">
