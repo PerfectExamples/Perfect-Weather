@@ -1,4 +1,4 @@
-# Perfect Weather App Example[简体中文](README.zh_CN.md)
+# Perfect天气App示例[English](README.md)
 
 <p align="center">
     <a href="http://perfect.org/get-involved.html" target="_blank">
@@ -39,81 +39,76 @@
     </a>
 </p>
 
-An Example Weather App Backend for Perfect
+基于Perfect后端的天气App示例
 
-The purpose of this example is to demonstrate using URL Routes & variables, Fetching of remote data from API's as JSON, reading and transforming to data more appropriately consumable by an API client.
+这个例子的目的是演示如何使用URL路径和变量，从API获取远程数据并转化成JSON形式,以及通过API客户端来更适当地读取和转换数据。
 
-Packages demonstrated:
+项目包需要:
 * PerfectLib (JSON)
 * HTTPServer
 * CURL
 * [JSONConfig](https://github.com/iamjono/JSONConfig) (3rd party library for reading configurations)
 
-This package builds with Swift Package Manager and is part of the [Perfect](https://github.com/PerfectlySoft/Perfect) project.
+以上项目包通过Swift Package Manager来编译，并成为[Perfect](https://github.com/PerfectlySoft/Perfect)工程的一部分。</br>
+请确保您已经安装了Xcode 8.0或以上版本。
 
-Ensure you have installed Xcode 8.0 or later.
+## 获取一个API密钥
 
-## Obtaining an API Key
+此示例项目需要从[https://www.wunderground.com/weather/api/](https://www.wunderground.com/weather/api/)获取一个有效的API密钥。请使用此链接注册开发者账号，并获取API密钥.</br>
+获取到的密钥将需要被添加到`ApplicationConfiguration.json`这个文件中。
 
-This example project requires a valid API key from [https://www.wunderground.com/weather/api/](https://www.wunderground.com/weather/api/) to function. Use this link to sign up for a developer account, and obtain an API key.
+## 准备工作 - 使用Xcode 8
 
-This key will be added to the `ApplicationConfiguration.json` file as described below.
-
-## Setup - Xcode 8
-
-* Check out or download the project;
-* In terminal, navigate to the directory and execute
-
+* 导出或下载工程;
+* 在终端中，导航到目录并执行⬇️:
 ```
 swift package generate-xcodeproj
 ```
 
-* Open `Perfect-Weather.xcodeproj`
-* Add to the "Library Search Paths" in "Project Settings" `$(PROJECT_DIR)`, recursive. **(This step will be unneeded in a future release of Xcode 8.)**
-* Rename the `ApplicationConfiguration.json.example` file to 	`ApplicationConfiguration.json`. 
-* Open this file and change the `token` value to the WeatherUnderground token obtained above.
-* Add the file to a new "Copy Files" build phase as shown:
+* 打开 `Perfect-Weather.xcodeproj`
+* 在"Project Settings"下的"Library Search Paths"中添加`$(PROJECT_DIR)`递归. **(这一步将不需要在更高版本的Xcode 8中做)**
+* 把 `ApplicationConfiguration.json.example` 文件重命名为 `ApplicationConfiguration.json`. 
+* 打开文件并替换WeatherUnderground token的内容
+* 添加一个新的"Copy Files" build phase并添加如下文件:
 
 ![https://github.com/PerfectExamples/Perfect-Weather/raw/master/Resource/CopyFilesPhase.png](https://github.com/PerfectExamples/Perfect-Weather/raw/master/Resource/CopyFilesPhase.png)
 
-* Select the Executable build target from the build targets dropdown in Xcode
-* Run (cmd-R) to build & run in Xcode.
+* 在Xcode的构建目标下拉来选择可执行文件
+* 在Xcode中使用(cmd-R)命令来编译运行项目工程
 
-In Xcode's console output pane you will see:
+您将会在Xcode控制台看到如下输出:⬇️
+```
+[INFO] Starting HTTP server on 0.0.0.0:8181 with document root ./webroot
+```
+
+* 打开浏览器，通过[http://localhost:8181/api/v1/current](http://localhost:8181/api/v1/current)访问
+
+## 准备工作 - 使用终端
+
+* 导出或下载工程;
+* 在终端中，导航到工程目录 
+* * 把 `ApplicationConfiguration.json.example` 文件重命名为 `ApplicationConfiguration.json`. 
+* 打开文件并替换WeatherUnderground token的内容.
+* 执行 `swift build` 命令
+* 项目编译成功后, 请执行 `./.build/debug/Perfect-Weather`命令
+
+您将会看到如下输出:
 
 ```
 [INFO] Starting HTTP server on 0.0.0.0:8181 with document root ./webroot
 ```
 
-* In a browser, visit [http://localhost:8181/api/v1/current](http://localhost:8181/api/v1/current)
+* 打开浏览器，通过[http://localhost:8181/api/v1/current](http://localhost:8181/api/v1/current)访问
 
-## Setup - Terminal
+## 已包含的路由
+此API中包含下列路由以供演示用途:
 
-* Check out or download the project;
-* In terminal, navigate to the directory 
-* * Rename the `ApplicationConfiguration.json.example` file to 	`ApplicationConfiguration.json`. 
-* Open this file and change the `token` value to the WeatherUnderground token obtained above.
-* Execute `swift build`
-* Once the project has compiled, execute `./.build/debug/Perfect-Weather`
+* GET: [http://localhost:8181/api/v1/current](http://localhost:8181/api/v1/current) - 返回默认位置(Canada/Newmarket)当前的天气情况。
+* GET: [http://localhost:8181/api/v1/forecast](http://localhost:8181/api/v1/forecast) - 返回默认位置(Canada/Newmarket)的天气预报。
+* GET: [http://localhost:8181/api/v1/current/{country}/{city}](http://localhost:8181/api/v1/current/{country}/{city}) - 返回指定国家和城市当前天气状况。确保您已经将 `{country}` 和 `{city}` 替换成了可用的值.
+* GET: [http://localhost:8181/api/v1/current/{country}/{city}](http://localhost:8181/api/v1/current/{country}/{city}) - 返回指定国家和城市的天气预报。确保您已经将 `{country}` 和 `{city}` 替换成了可用的值..
 
-The output you will see:
-
-```
-[INFO] Starting HTTP server on 0.0.0.0:8181 with document root ./webroot
-```
-
-* In a browser, visit [http://localhost:8181/api/v1/current](http://localhost:8181/api/v1/current)
-
-## Included Routes
-
-The following routes are included in this API for demonstration purposes:
-
-* GET: [http://localhost:8181/api/v1/current](http://localhost:8181/api/v1/current) - A route that returns the current weather conditions for the default location, Canada/Newmarket.
-* GET: [http://localhost:8181/api/v1/forecast](http://localhost:8181/api/v1/forecast) - A route that returns the weather forecast for the default location, Canada/Newmarket.
-* GET: [http://localhost:8181/api/v1/current/{country}/{city}](http://localhost:8181/api/v1/current/{country}/{city}) - A route that returns the current weather conditions for the specified country and city. Make sure you replace `{country}` and `{city}` with valid values.
-* GET: [http://localhost:8181/api/v1/current/{country}/{city}](http://localhost:8181/api/v1/current/{country}/{city}) - A route that returns the weather forecast for the specified country and city. Make sure you replace `{country}` and `{city}` with valid values.
-
-Current conditions sample response:
+目前天气现状的响应:
 
 ``` javascript
 {
@@ -123,7 +118,7 @@ Current conditions sample response:
 }
 ```
 
-Forecast sample response:
+环境响应:
 
 ``` javascript
 [
@@ -204,18 +199,19 @@ Forecast sample response:
 
 ## Postman Collection
 
-The repo includes a file `Example-WeatherAPI.postman_collection` which is a Postman URL collection.
+文件夹包含了一个Postman的URL集合的`Example-WeatherAPI.postman_collection`文件
 
-With Postman installed, import and use to easily query the routes.
+如果已经安装了Postman,就可以导入文件并轻松使用请求路由
 
-## Issues
+## 问题报告
 
-We are transitioning to using JIRA for all bugs and support related issues, therefore the GitHub issues has been disabled.
+目前我们已经把所有错误报告合并转移到了JIRA上，因此github原有的错误汇报功能不能用于本项目。
 
-If you find a mistake, bug, or any other helpful suggestion you'd like to make on the docs please head over to [http://jira.perfect.org:8080/servicedesk/customer/portal/1](http://jira.perfect.org:8080/servicedesk/customer/portal/1) and raise it.
+您的任何宝贵建意见或建议，或者发现我们的程序有问题，欢迎您在这里告诉我们。[http://jira.perfect.org:8080/servicedesk/customer/portal/1](http://jira.perfect.org:8080/servicedesk/customer/portal/1)。
 
-A comprehensive list of open issues can be found at [http://jira.perfect.org:8080/projects/ISS/issues](http://jira.perfect.org:8080/projects/ISS/issues)
+目前问题清单请参考以下链接： [http://jira.perfect.org:8080/projects/ISS/issues](http://jira.perfect.org:8080/projects/ISS/issues)
 
 
-## Further Information
-For more information on the Perfect project, please visit [perfect.org](http://perfect.org).
+
+## 更多内容
+关于Perfect更多内容，请参考[perfect.org](http://perfect.org)官网。
